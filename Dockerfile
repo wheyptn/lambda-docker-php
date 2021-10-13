@@ -22,8 +22,8 @@ RUN mkdir /lambda-php-vendor && \
     /usr/bin/php /opt/composer require guzzlehttp/guzzle
 
 # Prepare runtime files
-COPY runtime/bootstrap.php /lambda-php-runtime/
-RUN chmod 0755 /lambda-php-runtime/bootstrap.php
+COPY runtime/bootstrap /lambda-php-runtime/
+RUN chmod 0755 /lambda-php-runtime/bootstrap
 
 ###### Create runtime image ######
 FROM public.ecr.aws/lambda/provided:al2 as runtime
