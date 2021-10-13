@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  phplambda
+  Sample SAM Template for phplambda
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  phplambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+    Metadata:
+      DockerTag: phpoci
+      DockerContext: ./src/
+      Dockerfile: Dockerfile
+
+Outputs:
+  customphplambda:
+    Description: "phplambda Lambda Function ARN"
+    Value: !GetAtt phplambda.Arn
+  customphplambdaIamRole:
+    Description: "Implicit IAM Role created for phplambda function"
+    Value: !GetAtt phplambda.Arn
